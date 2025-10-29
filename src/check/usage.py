@@ -37,30 +37,18 @@ def get_usage(api_key):
     )
     data = (datetime.datetime.now()).strftime("%Y-%m-%d")
     resp_billing = requests.get(
-        f"https://api.vveai.com/v1/usage?date={data}", headers=headers
+        f"https://api.vveai.com/v1/dashboard/billing/usage?start_date={start_date}&end_date={end_date}", headers=headers
     )
     if not resp_billing.ok:
         return resp_billing.text
 
     billing_data = resp_billing.json()
-    total_price = 0.0
-    total_consume_input = 0
-    total_consume_output = 0
-    for item in billing_data["data"]:
-        if item["snapshot_id"] in price:
-            input_p, output_p = price[item["snapshot_id"]]
-            total_consume_input += item["n_context_tokens_total"]
-            total_price += item["n_context_tokens_total"] * input_p / 1000
-            total_consume_output += item["n_generated_tokens_total"]
-            total_price += item["n_generated_tokens_total"] * output_p / 1000
-        else:
-            print(f"Unknown model: {item['snapshot_id']}")
+    total_price = billing_data["total_usage"]
     result = {
         "current_time": datetime.datetime.now(),
-        "total_cost": total_price,
-        "total_consume_input": total_consume_input,
-        "total_consume_output": total_consume_output,
-        "total_consume_tokens": total_consume_input + total_consume_output,
+        "total_cost": billing_data["total_usage"] / 100,
+        "total_consume_tokens": billing_data["total_usage"],
+        "error": None
     }
 
     return result

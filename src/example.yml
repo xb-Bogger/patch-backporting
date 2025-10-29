@@ -6,6 +6,6 @@ target_release: 13f294c3d7837d630b3e9b08089752bc07b730e6
 sanitizer: LeakSanitizer
 error_message: "ERROR: LeakSanitizer"
 tag: CVE-2023-3576
-openai_key: 
-project_dir: libtiff
-patch_dataset_dir: CVE-2023-3576/
+openai_key: sk-
+project_dir: dataset/libtiff
+patch_dataset_dir: patch_dataset/CVE-2023-3576/
