@@ -5,7 +5,7 @@ import os
 import shutil
 import time
 from types import SimpleNamespace
-
+import json
 import git
 import yaml
 
@@ -151,6 +151,11 @@ def main():
         end_time = time.time()
         time.sleep(10)
         after_usage = get_usage(data.openai_key)
+        try:
+            before_usage = json.loads(before_usage)
+            after_usage = json.loads(after_usage)
+        except json.JSONDecodeError:
+            print("Error：before_usage or after_usage invalid JSON string")
         logger.debug(
             f"This patch total cost: ${(after_usage['total_cost'] - before_usage['total_cost']):.2f}"
         )
