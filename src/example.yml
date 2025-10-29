@@ -7,5 +7,5 @@ sanitizer: LeakSanitizer
 error_message: "ERROR: LeakSanitizer"
 tag: CVE-2023-3576
 openai_key: 
-project_dir: dataset/libsdl-org/libtiff
-patch_dataset_dir: ~/backports/patch_dataset/libtiff/CVE-2023-3576/
+project_dir: libtiff
+patch_dataset_dir: CVE-2023-3576/
