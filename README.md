@@ -5,6 +5,8 @@ The PDF version of our paper is located in the [docs/PortGPT.pdf](docs/PortGPT.p
 ## Setup
 
 ```shell
+git clone https://github.com/xb-Bogger/patch-backporting.git
+cd patch-backporting
 curl -sSL https://pdm-project.org/install-pdm.py | python3 -
 pdm install
 source .venv/bin/activate
@@ -28,9 +30,9 @@ target_release: 13f294c3d7837d630b3e9b08089752bc07b730e6 # commid id which need 
 sanitizer: LeakSanitizer # sanitizer type for poc, could be empty
 error_message: "ERROR: LeakSanitizer" # poc trigger message for poc, could be empty
 tag: CVE-2023-3576
-openai_key: # Your openai key
-project_dir: dataset/libsdl-org/libtiff # path to your project
-patch_dataset_dir: ~/backports/patch_dataset/libtiff/CVE-2023-3576/ # path to your patchset, include biuld.sh, test.sh ....
+openai_key: sk-
+project_dir: dataset/libtiff # path to your project
+patch_dataset_dir: patch_dataset/CVE-2023-3576/ # path to your patchset, include biuld.sh, test.sh ....
 
 #                    Version A           Version A(Fixed)     
 #   ┌───┐            ┌───┐             ┌───┐                  
