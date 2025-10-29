@@ -37,7 +37,7 @@ def get_usage(api_key):
     )
     data = (datetime.datetime.now()).strftime("%Y-%m-%d")
     resp_billing = requests.get(
-        f"https://api.openai.com/v1/usage?date={data}", headers=headers
+        f"https://api.vveai.com/v1/usage?date={data}", headers=headers
     )
     if not resp_billing.ok:
         return resp_billing.text
